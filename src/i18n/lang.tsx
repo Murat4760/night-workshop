@@ -35,6 +35,14 @@ export function LangProvider({ children }: { children: ReactNode }) {
     } catch {
       /* nothing to persist to — the in-memory choice still applies */
     }
+
+    // <title> and meta description track the visible language. Social-share
+    // previews (og:*, twitter:*) stay on the static English defaults in
+    // index.html — crawlers don't execute JS, so this is purely for users
+    // browsing with the tab open / bookmarking mid-session.
+    document.title = COPY[lang].meta.title
+    document.querySelector('meta[name="description"]')?.setAttribute('content', COPY[lang].meta.description)
+
     // Copy length differs per language, so every trigger below the fold moves.
     // Wait a frame for React to paint the new text before re-measuring.
     const id = requestAnimationFrame(() => ScrollTrigger.refresh())

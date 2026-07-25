@@ -63,6 +63,35 @@ button {
   color: #fff;
 }
 
+/* Deliberate focus ring — the custom cursor hides the pointer affordance, so
+   keyboard focus has to carry more weight than a browser default would. */
+:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* visible only once tabbed to — the first stop on every page */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  transform: translateY(-120%);
+  padding: 0.85rem 1.4rem;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 0 0 10px 0;
+  transition: transform 0.25s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline-offset: -3px;
+}
+
 /* ---------- shared primitives ---------- */
 
 .display {

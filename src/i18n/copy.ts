@@ -8,6 +8,9 @@ type Item = { k: string; t: string; d: string }
 
 export type Copy = {
   langSwitch: string
+  skipToContent: string
+  backToTop: string
+  meta: { title: string; description: string }
   nav: { work: string; process: string; contact: string; available: string }
   loader: { tag: string }
   hero: { eyebrow: string; name: [string, string]; sub: string; cue: string }
@@ -31,6 +34,13 @@ export const COPY: Record<Lang, Copy> = {
   /* ------------------------------------------------------------------ */
   en: {
     langSwitch: 'Change language',
+    skipToContent: 'Skip to content',
+    backToTop: 'Back to top',
+    meta: {
+      title: 'Murad Guluzade — Solo Web Developer | The Night Workshop',
+      description:
+        'I design and ship fast, unmistakably custom websites — start to finish, one pair of hands. No templates, no handoff gaps.',
+    },
     nav: { work: 'Work', process: 'Process', contact: 'Contact', available: '2 slots open' },
     loader: { tag: 'The night workshop' },
     hero: {
@@ -92,6 +102,13 @@ export const COPY: Record<Lang, Copy> = {
   /* ------------------------------------------------------------------ */
   tr: {
     langSwitch: 'Dili değiştir',
+    skipToContent: 'İçeriğe geç',
+    backToTop: 'Başa dön',
+    meta: {
+      title: 'Murad Guluzade — Bağımsız Web Geliştirici | Gece Atölyesi',
+      description:
+        'Hızlı ve şablona benzemeyen siteler tasarlayıp yayına alıyorum — baştan sona tek elden. Şablon yok, teslim boşluğu yok.',
+    },
     nav: { work: 'İşler', process: 'Süreç', contact: 'İletişim', available: '2 proje yeri açık' },
     loader: { tag: 'Gece atölyesi' },
     hero: {
@@ -153,6 +170,13 @@ export const COPY: Record<Lang, Copy> = {
   /* ------------------------------------------------------------------ */
   az: {
     langSwitch: 'Dili dəyiş',
+    skipToContent: 'Məzmuna keç',
+    backToTop: 'Yuxarı qayıt',
+    meta: {
+      title: 'Murad Guluzade — Müstəqil Veb Tərtibatçı | Gecə Emalatxanası',
+      description:
+        'Sürətli və şablona bənzəməyən saytlar dizayn edib təhvil verirəm — başdan sona tək əldən. Şablon yoxdur, təhvil boşluğu yoxdur.',
+    },
     nav: { work: 'İşlər', process: 'Proses', contact: 'Əlaqə', available: '2 layihə yeri açıq' },
     loader: { tag: 'Gecə emalatxanası' },
     hero: {

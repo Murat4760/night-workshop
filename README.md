@@ -8,6 +8,29 @@ npm run dev      # http://localhost:5180
 npm run build
 ```
 
+## Professional-grade extras
+
+Added on top of the choreography — the parts a portfolio site needs to actually
+perform its job (found, shared, accessible, monitored), not just look good.
+
+**SEO & sharing**
+- Full head: meta description, canonical, Open Graph + Twitter Card, `robots.txt`, `sitemap.xml`
+- JSON-LD `Person` schema
+- Real favicon set (`favicon.svg`, `apple-touch-icon.png`, `icon-512.png`) generated from one SVG source via `npm run icons`
+- A branded 1200×630 `og.png` generated from `scripts/og-source.svg` via `npm run og` (uses `@resvg/resvg-js` — no external service, re-run whenever the source SVG or copy changes)
+- `<title>` and meta description track the active language client-side; social-share previews stay on the static English defaults in `index.html` since crawlers don't execute JS
+
+**Accessibility**
+- Skip-to-content link, visible only on keyboard focus
+- Deliberate `:focus-visible` ring (violet, not the browser default) — the custom cursor hides the pointer affordance, so focus has to carry more
+- Language switch buttons and back-to-top both clear the WCAG 24px minimum tap target
+
+**Monitoring**
+- `@vercel/analytics` + `@vercel/speed-insights`, wired at the app root — picked up automatically once deployed on Vercel, no config
+
+**Back to top**
+- Appears once the hero scrolls past, uses the same magnetic + cursor-label system as the nav logo and CTA button rather than a one-off component
+
 ## Beat map
 
 | # | Beat | Mode | Scroll travel | Key motion |
