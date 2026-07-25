@@ -137,9 +137,11 @@ the computed matrix resolves it to px and the tween fights it (this bit the nav)
 Source lives at **https://github.com/Murat4760/night-workshop** (`master` is
 production). Live at **https://muradguluzade.vercel.app** (Vercel project
 `murad`, team `murat4760s-projects`). `nightworkshop.vercel.app`,
-`murad-workshop.vercel.app` and `murad-seven.vercel.app` are aliases onto the
-same deployment. `murad.vercel.app` is held by another Vercel account and
-can't be claimed.
+`murad-workshop.vercel.app` and `murad-seven.vercel.app` are registered as
+proper project **Domains** (not one-off `vercel alias set` pointers — those
+don't follow new deploys) tracking Production, so all four move together on
+every push. `murad.vercel.app` is held by another Vercel account and can't be
+claimed.
 
 The Vercel project is git-connected — **push to `master` and it deploys
 itself**, PRs get their own preview URL. No manual `vercel deploy` needed for
