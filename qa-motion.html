@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QA — motion contexts</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--
+      TEMPORARY QA HARNESS — delete before shipping.
+      The headless preview pane reports prefers-reduced-motion: reduce, which
+      masks the desktop/mobile choreography. This entry point overrides the
+      media query BEFORE the app mounts so the real code paths can be measured.
+      Drive with ?motion=full | ?motion=lite | ?motion=reduce
+    -->
+    <script>
+      ;(function () {
+        var mode = new URLSearchParams(location.search).get('motion') || 'full'
+        var orig = window.matchMedia.bind(window)
+        function fake(q, m) {
+          return {
+            matches: m, media: q, onchange: null,
+            addEventListener: function () {}, removeEventListener: function () {},
+            addListener: function () {}, removeListener: function () {},
+            dispatchEvent: function () { return false },
+          }
+        }
+        window.matchMedia = function (q) {
+          if (q.indexOf('prefers-reduced-motion: reduce') > -1) return fake(q, mode === 'reduce')
+          if (q.indexOf('prefers-reduced-motion: no-preference') > -1) {
+            if (mode === 'reduce') return fake(q, false)
+            var wantsNarrow = q.indexOf('max-width') > -1
+            return fake(q, mode === 'lite' ? wantsNarrow : !wantsNarrow)
+          }
+          return orig(q)
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

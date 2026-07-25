@@ -1,0 +1,937 @@
+/* =====================================================================
+   BEAT 1 — HERO (pinned, 150vh)
+   ===================================================================== */
+
+/* Section is one viewport tall; ScrollTrigger's pin spacing adds the 150vh of
+   scroll travel the beat is choreographed against. */
+.hero__stage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.hero__scene {
+  position: absolute;
+  inset: 0;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* inner wrapper carries the mouse tilt; the bleed hides its edges */
+.layer__inner {
+  position: absolute;
+  inset: -7%;
+  will-change: transform;
+}
+
+.layer--city .art {
+  position: absolute;
+  left: 0;
+  bottom: 26%;
+  width: 100%;
+  height: 56%;
+}
+
+.layer--room .art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.layer--desk .art {
+  position: absolute;
+  left: 0;
+  bottom: -6%;
+  width: 100%;
+  height: 82%;
+}
+
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(80% 60% at 50% 55%, transparent 30%, rgba(13, 13, 20, 0.75) 100%),
+    linear-gradient(to top, var(--bg) 2%, transparent 30%);
+}
+
+/* --- foreground code fragments --- */
+
+/* The bleed exists to hide the edges of full-bleed art while it tilts; the
+   fragment cards have no edges to hide, so they sit at their authored positions. */
+.layer--frag .layer__inner {
+  inset: 0;
+}
+
+.frag {
+  position: absolute;
+  width: clamp(150px, 15vw, 216px);
+  padding: 0.75rem 0.85rem 0.85rem;
+  border-radius: 14px;
+  background: rgba(26, 22, 46, 0.82);
+  border: 1px solid rgba(124, 92, 255, 0.28);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  will-change: transform;
+}
+
+.frag__dot {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.frag__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  opacity: 0.9;
+  margin-bottom: 0.6rem;
+}
+
+.frag__lines {
+  display: grid;
+  gap: 7px;
+}
+
+.frag__line {
+  display: flex;
+  gap: 5px;
+}
+
+.frag__line i {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--text);
+  opacity: 0.22;
+}
+
+/* fake syntax colouring — mirrors the editor on the desk monitor */
+.frag__line i[data-tk='kw'] {
+  background: var(--violet);
+  opacity: 0.8;
+}
+.frag__line i[data-tk='fn'] {
+  background: var(--text);
+  opacity: 0.5;
+}
+.frag__line i[data-tk='str'] {
+  background: var(--orange);
+  opacity: 0.65;
+}
+.frag__line i[data-tk='dim'] {
+  opacity: 0.12;
+}
+
+.frag__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.42rem;
+  border-radius: 999px;
+  background: rgba(124, 92, 255, 0.16);
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.frag__status svg {
+  width: 14px;
+  height: 14px;
+  color: var(--violet);
+}
+
+/* Kept ≥5% off each edge so the depth-1.7 mouse tilt (±51px) can't clip them. */
+.frag--a {
+  left: 5%;
+  top: 22%;
+}
+.frag--b {
+  right: 7%;
+  top: 14%;
+}
+.frag--c {
+  right: 12%;
+  bottom: 22%;
+}
+.frag--d {
+  left: 8%;
+  bottom: 16%;
+}
+
+/* --- hero copy --- */
+
+.hero__copy {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  z-index: 3;
+  text-align: center;
+  will-change: transform;
+}
+
+.hero__name {
+  font-size: var(--step-hero);
+  margin-block: 0.18em 0.4em;
+  text-shadow: 0 24px 80px rgba(13, 13, 20, 0.9);
+}
+
+.hero__name .line:last-child span {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--text);
+}
+
+.hero__sub {
+  max-width: 46ch;
+  margin-inline: auto;
+  color: var(--muted);
+}
+
+.hero__cue {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  top: calc(100% + clamp(2rem, 8vh, 5rem));
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+}
+
+.hero__cue i {
+  display: block;
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(to bottom, transparent, var(--violet));
+}
+
+/* =====================================================================
+   BEAT 2 — STACK (flow)
+   ===================================================================== */
+
+.stack {
+  padding-block: clamp(6rem, 16vh, 12rem);
+  overflow: hidden;
+}
+
+.stack__head {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.stack__title {
+  font-size: var(--step-xl);
+}
+
+.stack__rows {
+  display: grid;
+  gap: clamp(0.9rem, 1.6vw, 1.4rem);
+}
+
+.stack__row {
+  display: flex;
+  gap: clamp(0.9rem, 1.6vw, 1.4rem);
+  width: max-content;
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+
+.stack__row--b {
+  margin-left: clamp(-14rem, -8vw, -3rem);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.35rem 0.75rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(42, 36, 64, 0.55), rgba(18, 18, 29, 0.55));
+  white-space: nowrap;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  transition:
+    border-color 0.35s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tag:hover {
+  border-color: rgba(124, 92, 255, 0.55);
+  transform: translateY(-4px);
+}
+
+/* PLACEHOLDER: swap .tag__mark for the real logo mark */
+.tag__mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--mid-lift);
+}
+
+.tag__mark[data-mark='0'] {
+  background: var(--violet);
+  opacity: 0.85;
+}
+.tag__mark[data-mark='1'] {
+  background: var(--mid-lift);
+}
+.tag__mark[data-mark='2'] {
+  background: var(--orange);
+  opacity: 0.8;
+}
+
+/* =====================================================================
+   BEAT 3 — FEATURED BUILD (pinned, 120vh)
+   ===================================================================== */
+
+/* As with the hero: 120vh of travel comes from the pin, not from section height. */
+.feat__stage {
+  height: 100vh;
+  height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+}
+
+.feat__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.feat__head {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: clamp(1.6rem, 3vw, 2.6rem);
+}
+
+.feat__title {
+  font-size: var(--step-xl);
+}
+
+.feat__list {
+  display: grid;
+  gap: clamp(0.9rem, 1.8vw, 1.5rem);
+}
+
+.feat__bullet {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.feat__k {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--violet);
+  padding-top: 0.2rem;
+}
+
+.feat__bullet strong {
+  display: block;
+  font-weight: 600;
+  font-size: var(--step-md);
+  letter-spacing: -0.01em;
+}
+
+.feat__bullet em {
+  display: block;
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.feat__deviceWrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+
+.feat__glow {
+  position: absolute;
+  inset: 6% -6%;
+  background: radial-gradient(50% 50% at 50% 50%, var(--violet-soft), transparent 70%);
+  filter: blur(20px);
+}
+
+.feat__device {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+  filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.55));
+}
+
+/* =====================================================================
+   BEAT 4 — WORK INDEX (flow) — an index, not a card grid
+   ===================================================================== */
+
+.wk {
+  padding-block: clamp(6rem, 16vh, 12rem);
+}
+
+.wk__head {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.wk__title {
+  font-size: var(--step-xl);
+}
+
+.wk__list {
+  border-top: 1px solid var(--line);
+}
+
+.wk__row {
+  border-bottom: 1px solid var(--line);
+}
+
+.wk__row a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1.5fr) minmax(0, 0.8fr) minmax(0, 1fr) 4rem 1.5rem;
+  align-items: center;
+  gap: 1.5rem;
+  padding: clamp(1.1rem, 2.2vw, 1.9rem) 0.75rem;
+  transition: padding-inline 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  isolation: isolate;
+}
+
+/* spotlight follows the cursor across the row */
+.wk__row a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(220px 140px at var(--mx, 50%) 50%, var(--violet-soft), transparent 70%);
+  transition: opacity 0.4s ease;
+}
+
+.wk__row a:hover::before {
+  opacity: 1;
+}
+
+.wk__row a:hover {
+  padding-inline: 1.5rem 0.25rem;
+}
+
+.wk__n {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  color: var(--violet);
+}
+
+.wk__name {
+  font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+  transition: color 0.35s ease;
+}
+
+.wk__type,
+.wk__year {
+  font-size: 0.86rem;
+  color: var(--faint);
+}
+
+.wk__result {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.wk__year {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.wk__arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--faint);
+  opacity: 0;
+  transform: translate(-6px, 6px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.4s ease;
+}
+
+.wk__row a:hover .wk__arrow {
+  opacity: 1;
+  transform: none;
+  color: var(--violet);
+}
+
+/* thumbnail that trails the cursor — never part of the layout */
+.wk__preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  width: 260px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.wk__thumb {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.wk__thumb:first-child {
+  position: relative;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .wk__preview {
+    display: none;
+  }
+}
+
+/* =====================================================================
+   BEAT 5 — NUMBERS + PULL QUOTE (flow)
+   ===================================================================== */
+
+.nm {
+  padding-block: clamp(5rem, 13vh, 9rem);
+}
+
+.nm__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem) clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.nm__head {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.nm__title {
+  font-size: var(--step-lg);
+}
+
+.nm__stats {
+  grid-row: span 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.6rem);
+}
+
+.nm__stat {
+  display: grid;
+  gap: 0.3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.nm__value {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.nm__label {
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.nm__quote {
+  position: relative;
+  margin: 0;
+  padding-left: clamp(1.5rem, 3vw, 2.5rem);
+  border-left: 2px solid var(--violet);
+}
+
+.nm__mark {
+  position: absolute;
+  top: -0.35em;
+  left: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--violet);
+  opacity: 0.35;
+}
+
+.nm__quote blockquote {
+  margin: 0 0 1.1rem;
+  font-size: var(--step-md);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.nm__quote figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--faint);
+}
+
+.nm__quote figcaption b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* =====================================================================
+   BEAT 6 — PROCESS (flow)
+   ===================================================================== */
+
+.proc {
+  padding-block: clamp(6rem, 16vh, 12rem);
+}
+
+.proc__head {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+.proc__title {
+  font-size: var(--step-xl);
+}
+
+.proc__track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+.proc__line {
+  position: absolute;
+  pointer-events: none;
+}
+
+.proc__line--h {
+  inset: -2.5rem 0 auto;
+  width: 100%;
+  height: 160px;
+}
+
+.proc__line--v {
+  display: none;
+}
+
+.proc__step {
+  position: relative;
+  display: grid;
+  gap: 0.7rem;
+  justify-items: start;
+}
+
+.proc__icon {
+  width: clamp(74px, 8vw, 104px);
+  margin-bottom: 0.6rem;
+  will-change: transform;
+}
+
+.proc__stepTitle {
+  font-size: var(--step-lg);
+}
+
+.proc__stepBody {
+  color: var(--muted);
+  max-width: 34ch;
+}
+
+/* =====================================================================
+   BEAT 5 — CONTACT CTA (flow)
+   ===================================================================== */
+
+.cta {
+  position: relative;
+  min-height: 92vh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  padding-block: clamp(6rem, 14vh, 10rem);
+}
+
+.cta__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cta__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.cta__glow--a {
+  width: 46vw;
+  height: 46vw;
+  left: -8vw;
+  top: 4vw;
+  background: radial-gradient(50% 50% at 50% 50%, var(--violet-soft), transparent 70%);
+}
+
+.cta__glow--b {
+  width: 38vw;
+  height: 38vw;
+  right: -6vw;
+  bottom: -6vw;
+  background: radial-gradient(50% 50% at 50% 50%, var(--orange-soft), transparent 70%);
+}
+
+.cta__p {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+.cta__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 1.4rem;
+}
+
+.cta__head {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.cta__title {
+  font-size: var(--step-hero);
+}
+
+.cta__title .line:last-child span {
+  color: var(--violet);
+}
+
+.cta__sub {
+  max-width: 48ch;
+  color: var(--muted);
+}
+
+.cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding: 1.05rem 2rem;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+.cta__btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta__btn:hover {
+  background: var(--violet);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.cta__btn:hover svg {
+  transform: translateX(5px);
+}
+
+/* =====================================================================
+   BEAT 6 — FOOTER
+   ===================================================================== */
+
+.foot {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(2.5rem, 6vh, 4rem);
+}
+
+.foot__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.foot__socials {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.2rem);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.foot__socials a:hover {
+  color: var(--text);
+}
+
+.foot__copy {
+  font-size: 0.8rem;
+  color: var(--faint);
+}
+
+/* =====================================================================
+   RESPONSIVE — under 768px heavy sections un-pin into normal flow
+   ===================================================================== */
+
+@media (max-width: 767.98px) {
+  .hero__stage {
+    height: 100svh;
+  }
+
+  .layer__inner {
+    inset: -4%;
+  }
+
+  .layer--city .art {
+    bottom: 30%;
+    height: 42%;
+  }
+
+  .layer--desk .art {
+    height: 58%;
+    bottom: 0;
+  }
+
+  .frag {
+    width: 132px;
+    padding: 0.6rem;
+  }
+
+  .frag--b,
+  .frag--d {
+    display: none;
+  }
+
+  .frag--a {
+    left: 3%;
+    top: 16%;
+  }
+
+  .frag--c {
+    right: 3%;
+    bottom: 26%;
+  }
+
+  .hero__copy {
+    width: 100%;
+  }
+
+  .hero__cue {
+    top: calc(100% + 2rem);
+  }
+
+  .feat {
+    padding-block: clamp(5rem, 12vh, 8rem);
+  }
+
+  .feat__stage {
+    height: auto;
+    overflow: visible;
+  }
+
+  .feat__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+
+  .feat__deviceWrap {
+    order: -1;
+  }
+
+  .proc__track {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+    padding-left: 3.5rem;
+  }
+
+  .proc__line--h {
+    display: none;
+  }
+
+  .proc__line--v {
+    display: block;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 100%;
+  }
+
+  /* the index collapses to two stacked lines per row */
+  .wk__row a {
+    grid-template-columns: 2.2rem minmax(0, 1fr) auto;
+    grid-template-areas:
+      'n name year'
+      '. result result';
+    gap: 0.35rem 1rem;
+    padding-block: 1.1rem;
+  }
+
+  .wk__n {
+    grid-area: n;
+  }
+  .wk__name {
+    grid-area: name;
+  }
+  .wk__year {
+    grid-area: year;
+  }
+  .wk__result {
+    grid-area: result;
+  }
+  .wk__type,
+  .wk__arrow {
+    display: none;
+  }
+
+  .wk__row a:hover {
+    padding-inline: 0.75rem;
+  }
+
+  .nm__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nm__stats {
+    grid-row: auto;
+  }
+
+  .cta {
+    min-height: 80vh;
+  }
+
+  .foot__inner {
+    justify-content: flex-start;
+  }
+}

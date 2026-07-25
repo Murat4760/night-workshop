@@ -1,0 +1,303 @@
+/* ============ LOADER ============ */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+
+.loader__inner {
+  width: min(520px, 82vw);
+  text-align: left;
+}
+
+.loader__row {
+  overflow: hidden;
+}
+
+.loader__count {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+  font-size: clamp(4rem, 16vw, 9rem);
+  line-height: 1;
+  margin-block: 0.1em 0.4em;
+  font-variant-numeric: tabular-nums;
+}
+
+.loader__count i {
+  font-size: 0.24em;
+  font-style: normal;
+  color: var(--violet);
+}
+
+.loader__track {
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+
+.loader__fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--violet), var(--orange));
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+/* ============ NAV ============ */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 60;
+  height: var(--nav-h);
+  /* initial offset is set by GSAP (yPercent), not CSS — a percentage transform
+     in CSS resolves to px in the computed matrix and would fight the tween */
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(13, 13, 20, 0.55);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__inner {
+  height: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.nav__left {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+/* live availability — the dot is the only thing on the page that blinks */
+.nav__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.nav__status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+  animation: pulse 2.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(74, 222, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__status i {
+    animation: none;
+  }
+}
+
+.nav__logo,
+.foot__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+}
+
+.nav__mark {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--violet);
+  box-shadow: 0 0 18px var(--violet);
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.4rem);
+}
+
+.nav__links {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.4rem);
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
+
+.nav__links a {
+  color: var(--muted);
+  position: relative;
+  padding-block: 0.4rem;
+  transition: color 0.3s ease;
+}
+
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0.15rem;
+  width: 100%;
+  height: 1px;
+  background: var(--violet);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav__links a:hover {
+  color: var(--text);
+}
+
+.nav__links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ============ LANGUAGE SWITCH ============ */
+
+.langs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(42, 36, 64, 0.4);
+}
+
+.langs__btn {
+  padding: 0.34rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease;
+}
+
+.langs__btn:hover {
+  color: var(--text);
+}
+
+.langs__btn[data-active='true'] {
+  color: var(--bg);
+  background: var(--text);
+}
+
+/* ============ CURSOR ============ */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  margin: -4px 0 0 -4px;
+}
+
+.cursor--dot {
+  width: 8px;
+  height: 8px;
+  background: var(--text);
+}
+
+.cursor--ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid var(--violet);
+  opacity: 0.6;
+  display: grid;
+  place-items: center;
+  transition:
+    width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    margin 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.32s ease,
+    border-color 0.32s ease;
+}
+
+/* the ring becomes a labelled pill over anything that declares a label */
+.cursor--ring[data-labelled='true'] {
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  background: var(--violet);
+  border-color: var(--violet);
+}
+
+.cursor__label {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+
+.cursor--ring[data-labelled='true'] .cursor__label {
+  opacity: 1;
+}
+
+html[data-cursor='custom'],
+html[data-cursor='custom'] a,
+html[data-cursor='custom'] button {
+  cursor: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}
+
+/* Under 640px the anchor links + switcher can't both fit (Turkish and
+   Azerbaijani labels are longer than the English ones). The page is a linear
+   scroll, so the links give way and the language switch stays reachable. */
+@media (max-width: 639.98px) {
+  .nav__links {
+    display: none;
+  }
+
+  .langs__btn {
+    padding: 0.3rem 0.5rem;
+  }
+}
