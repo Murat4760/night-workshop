@@ -52,7 +52,7 @@ export const COPY: Record<Lang, Copy> = {
     stack: { index: '02 — The bench', title: 'Tools on the desk' },
     feat: {
       index: '03 — Featured build',
-      title: ['Saraykapı', 'Restaurant'],
+      title: ['Celo Restaurant', 'Restaurant'],
       bullets: [
         { k: '01', t: 'Booking flow rebuilt', d: 'Three screens down to one. Reservations up 38% in the first month.' },
         { k: '02', t: 'Sub-second first paint', d: 'Static-first delivery, images streamed at the size the device asks for.' },
@@ -64,11 +64,14 @@ export const COPY: Record<Lang, Copy> = {
       index: '04 — Selected work',
       title: 'The rest of the bench',
       cursor: 'View',
+      // Order-matched to WORK_ROWS in WorkIndex.tsx: Celo Restaurant, Sultan
+      // Grill House, Akanlar Yapı, Saraykapı. Akanlar Yapı and Saraykapı carry
+      // real verified results; the other two are new and need real numbers.
       rows: [
-        { type: 'Restaurant', result: '+38% reservations' },
+        { type: 'Restaurant', result: 'Freshly launched' },
+        { type: 'Restaurant', result: 'Freshly launched' },
         { type: 'Construction', result: 'Rebuilt in 3 weeks' },
-        { type: 'Salon', result: 'Booking live in 6 days' },
-        { type: 'Education', result: '3× enquiry capture' },
+        { type: 'Restaurant', result: '+38% reservations' },
       ],
     },
     numbers: {
@@ -120,7 +123,7 @@ export const COPY: Record<Lang, Copy> = {
     stack: { index: '02 — Tezgâh', title: 'Masadaki araçlar' },
     feat: {
       index: '03 — Öne çıkan iş',
-      title: ['Saraykapı', 'Restoran'],
+      title: ['Celo Restaurant', 'Restoran'],
       bullets: [
         { k: '01', t: 'Rezervasyon akışı yeniden kuruldu', d: 'Üç ekran tek ekrana indi. İlk ayda rezervasyonlar %38 arttı.' },
         { k: '02', t: 'Saniyenin altında ilk görüntü', d: 'Statik öncelikli dağıtım, görseller cihazın istediği boyutta geliyor.' },
@@ -133,10 +136,10 @@ export const COPY: Record<Lang, Copy> = {
       title: 'Tezgâhtaki diğer işler',
       cursor: 'Bak',
       rows: [
-        { type: 'Restoran', result: '%38 daha fazla rezervasyon' },
+        { type: 'Restoran', result: 'Yeni yayında' },
+        { type: 'Restoran', result: 'Yeni yayında' },
         { type: 'İnşaat', result: '3 haftada yenilendi' },
-        { type: 'Kuaför', result: '6 günde online randevu' },
-        { type: 'Eğitim', result: '3 kat daha fazla başvuru' },
+        { type: 'Restoran', result: '%38 daha fazla rezervasyon' },
       ],
     },
     numbers: {
@@ -188,7 +191,7 @@ export const COPY: Record<Lang, Copy> = {
     stack: { index: '02 — Dəzgah', title: 'Masadakı alətlər' },
     feat: {
       index: '03 — Seçilmiş iş',
-      title: ['Saraykapı', 'Restoran'],
+      title: ['Celo Restaurant', 'Restoran'],
       bullets: [
         { k: '01', t: 'Rezervasiya axını yenidən quruldu', d: 'Üç ekran birə endi. İlk ayda rezervasiyalar 38% artdı.' },
         { k: '02', t: 'Saniyədən az ilk göstərim', d: 'Statik öncəlikli çatdırılma, şəkillər cihazın istədiyi ölçüdə gəlir.' },
@@ -201,10 +204,10 @@ export const COPY: Record<Lang, Copy> = {
       title: 'Dəzgahdakı digər işlər',
       cursor: 'Bax',
       rows: [
-        { type: 'Restoran', result: '38% çox rezervasiya' },
+        { type: 'Restoran', result: 'Yeni yayımlandı' },
+        { type: 'Restoran', result: 'Yeni yayımlandı' },
         { type: 'Tikinti', result: '3 həftəyə yeniləndi' },
-        { type: 'Gözəllik salonu', result: '6 gündə onlayn qeydiyyat' },
-        { type: 'Təhsil', result: '3 dəfə çox müraciət' },
+        { type: 'Restoran', result: '38% çox rezervasiya' },
       ],
     },
     numbers: {

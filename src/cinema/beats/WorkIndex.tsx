@@ -9,10 +9,10 @@ import { useCopy } from '../../i18n/lang'
  * in the same order.
  */
 const WORK_ROWS = [
-  { name: 'Saraykapı Ocakbaşı', year: '2026', tint: 'var(--orange)' },
+  { name: 'Celo Restaurant', year: '2026', tint: 'var(--orange)' },
+  { name: 'Sultan Grill House', year: '2026', tint: 'var(--mid-lift)' },
   { name: 'Akanlar Yapı', year: '2025', tint: 'var(--violet)' },
-  { name: 'Celo Studio', year: '2025', tint: 'var(--mid-lift)' },
-  { name: 'Yeni Ufuk', year: '2025', tint: 'var(--violet)' },
+  { name: 'Saraykapı', year: '2026', tint: 'var(--orange)' },
 ]
 
 /** Placeholder thumbnail — swap for a real screenshot per project. */

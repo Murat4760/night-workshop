@@ -174,3 +174,7 @@ pane reports `prefers-reduced-motion: reduce`, which masks the desktop and mobil
 choreography; this entry point overrides the media query before mount so the real
 code paths can be measured. Drive with `?motion=full | lite | reduce`. Delete it
 whenever you like.
+
+
+## Related files (vault graph links)
+- Hub: [[3 - Resources/Client Repo READMEs|Client Repo READMEs]]

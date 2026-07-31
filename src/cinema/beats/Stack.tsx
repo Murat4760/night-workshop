@@ -3,7 +3,7 @@ import { gsap, useGSAP, INTENSITY, MQ, isTouch, type MotionConditions } from '..
 import { useCopy } from '../../i18n/lang'
 
 /** Placeholder marks — swap the coloured square for a real logo per tool. */
-const ROW_A = ['Claude Code', 'Lovable', 'Next.js', 'React', 'TypeScript', 'Supabase']
+const ROW_A = ['Claude Code', 'JavaScript', 'Next.js', 'React', 'TypeScript', 'Supabase']
 const ROW_B = ['GSAP', 'Tailwind', 'Vercel', 'Figma', 'Postgres', 'Framer Motion']
 
 function Tag({ label, i }: { label: string; i: number }) {
